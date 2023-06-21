@@ -1,6 +1,6 @@
+import { useSelector, useDispatch } from "react-redux";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 import Wrapper from "../assets/wrappers/PageBtnContainer";
-import { useSelector, useDispatch } from "react-redux";
 import { changePage } from "../features/allJobs/allJobsSlice";
 
 const PageBtnContainer = () => {

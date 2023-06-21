@@ -1,8 +1,8 @@
-import Wrapper from "../assets/wrappers/Navbar";
-import { FaAlignLeft, FaUserCircle } from "react-icons/fa";
-import Logo from "./Logo";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaAlignLeft, FaUserCircle } from "react-icons/fa";
+import Logo from "./Logo";
+import Wrapper from "../assets/wrappers/Navbar";
 import { toggleSidebar, clearStore } from "../features/user/userSlice";
 
 const Navbar = () => {
