@@ -88,8 +88,8 @@ const Register = () => {
           onClick={() =>
             dispatch(
               loginUser({
-                email: process.env.TEST_EMAIL,
-                password: process.env.TEST_PASSWORD,
+                email: process.env.REACT_APP_TEST_EMAIL,
+                password: process.env.REACT_APP_TEST_PASSWORD,
               })
             )
           }
