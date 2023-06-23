@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import "dotenv/config";
 
-const Schema = mongoose.Schema;
+import { UserDocument } from "../types/user.interface";
 
-export const UserSchema = new Schema({
+export const UserSchema = new Schema<UserDocument>({
   name: {
     type: String,
     required: [true, "Please provide a name"],
@@ -50,7 +51,7 @@ UserSchema.pre("save", async function () {
 UserSchema.methods.createJWT = function () {
   return jwt.sign(
     { userId: this._id, name: this.name },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET as string,
     {
       expiresIn: process.env.JWT_LIFETIME,
     }
@@ -62,4 +63,4 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
   return isMatch;
 };
 
-export const User = mongoose.model("User", UserSchema);
+export const User = model<UserDocument>("User", UserSchema);
