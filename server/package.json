@@ -2,12 +2,20 @@
   "name": "06-jobs-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.ts",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "npx nodemon",
+    "build": "rimraf ./build && npx tsc",
+    "start": "npm run build && node build/app",
+    "lint": "npx eslint ./src",
+    "format": "npx eslint ./src --fix"
   },
   "type": "module",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -32,9 +40,17 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
-    "nodemon": "^2.0.9"
+    "@types/node": "^20.3.1",
+    "@typescript-eslint/parser": "^5.60.0",
+    "husky": "^8.0.3",
+    "nodemon": "^2.0.9",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0"
   },
   "engines": {
     "node": "14.x"
