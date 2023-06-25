@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-import { UserDocument } from "../types/user.interface";
+import { UserDocument } from "../types/user.interface.js";
 
 export const UserSchema = new Schema<UserDocument>({
   name: {
