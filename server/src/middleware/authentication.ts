@@ -16,7 +16,7 @@ export const authenticateUser = async (req: ExpressRequestInterface, res: Respon
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET) as { userId: string; email: string };
 
-    const testUser = payload.userId === "6492ee2827d31d31e3c71b96";
+    const testUser = payload.userId === "649a8f0dc346845870d1742c";
 
     req.userId = payload.userId;
     req.ifTestUser = testUser;
