@@ -1,9 +1,11 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 import { UserDocument } from "../types/user.interface.js";
+
+const { Schema, model } = mongoose;
 
 export const UserSchema = new Schema<UserDocument>({
   name: {
@@ -49,13 +51,9 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createJWT = function () {
-  return jwt.sign(
-    { userId: this._id, name: this.name },
-    process.env.JWT_SECRET as string,
-    {
-      expiresIn: process.env.JWT_LIFETIME,
-    }
-  );
+  return jwt.sign({ userId: this._id, name: this.name }, process.env.JWT_SECRET as string, {
+    expiresIn: process.env.JWT_LIFETIME,
+  });
 };
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
