@@ -4,6 +4,11 @@ import { StatusCodes } from "http-status-codes";
 import { ExpressRequestInterface } from "../types/expressRequest.interface.js";
 import { BadRequestError, NotFoundError } from "../errors/index.js";
 
+export const getAllJobs = async (req: ExpressRequestInterface, res: Response) => {
+  const jobs = await Job.find({ createdBy: req.userId });
+  res.status(StatusCodes.OK).json({ jobs });
+};
+
 export const getJob = async (req: ExpressRequestInterface, res: Response) => {
   const { id } = req.params;
   const job = await Job.findOne({ _id: id, createdBy: req.userId });
