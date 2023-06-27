@@ -5,6 +5,17 @@ import { ExpressRequestInterface } from "../types/expressRequest.interface.js";
 import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    throw new BadRequestError("Please provide name, email and password");
+  }
+
+  const ifUserExists = await User.findOne({ email }).exec();
+  if (ifUserExists) {
+    throw new BadRequestError("User already exists");
+  }
+
   const user = await User.create(req.body);
   const token = user.createJWT();
 
