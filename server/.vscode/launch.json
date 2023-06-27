@@ -8,13 +8,9 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "program": "${workspaceFolder}\\src\\controllers\\auth.ts",
-      "outFiles": [
-        "${workspaceFolder}/**/*.js"
-      ]
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\build\\src\\app.js",
+      "outFiles": ["${workspaceFolder}/**/*.js"]
     }
   ]
 }
