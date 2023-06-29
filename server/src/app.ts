@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import "express-async-errors";
 import { connectDB } from "./db/connect.js";
 import authRouter from "./routes/auth.js";
 import jobsRouter from "./routes/jobs.js";
 import { authenticateUser } from "./middleware/authentication.js";
+import { errorHandlerMiddleware } from "./middleware/error-handler.js";
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
+
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
 
