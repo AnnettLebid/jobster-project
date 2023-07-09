@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import "dotenv/config";
 import "express-async-errors";
 import { connectDB } from "./db/connect.js";
@@ -13,10 +14,15 @@ const app = express();
 app.set("trust proxy", 1);
 
 app.use(cors());
+app.use(express.static(path.resolve(__dirname, "../../client/build")));
 app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../../client/build", "index.html"));
+});
 
 app.use(errorHandlerMiddleware);
 
