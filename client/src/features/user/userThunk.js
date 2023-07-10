@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
-import authHeader from "../../utils/authHeader";
 import { clearAllJobsState } from "../allJobs/allJobsSlice";
 import { clearValues } from "../job/jobSlice";
 import { logoutUser } from "./userSlice";
