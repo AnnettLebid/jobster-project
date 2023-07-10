@@ -42,7 +42,29 @@ const jobSlice = createSlice({
       toast.success("Job Created");
       state.isLoading = false;
     });
-    builder.addCase(createJob.rejected, (state, payload) => {
+    builder.addCase(createJob.rejected, (state, { payload }) => {
+      toast.error(payload);
+      state.isLoading = false;
+    });
+    builder.addCase(deleteJob.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteJob.fulfilled, (state) => {
+      toast.success("Job Deleted");
+      state.isLoading = false;
+    });
+    builder.addCase(deleteJob.rejected, (state, { payload }) => {
+      toast.error(payload);
+      state.isLoading = false;
+    });
+    builder.addCase(editJob.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(editJob.fulfilled, (state) => {
+      toast.success("Job Modified...");
+      state.isLoading = false;
+    });
+    builder.addCase(editJob.rejected, (state, { payload }) => {
       toast.error(payload);
       state.isLoading = false;
     });
