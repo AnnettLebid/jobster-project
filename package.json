@@ -1,0 +1,13 @@
+{
+  "name": "jobster-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd server && yarn && yarn build  && cd ../client && yarn && yarn build",
+    "start": "node server/build/src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anna Lebid",
+  "license": "ISC"
+}
