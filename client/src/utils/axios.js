@@ -3,7 +3,7 @@ import { clearStore } from "../features/user/userSlice";
 import { getUserFromLocalStorage } from "./localStorage";
 
 const customFetch = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "/api/v1",
 });
 
 //we can add the interceptors to custom fetch (headers will be added automatically)
