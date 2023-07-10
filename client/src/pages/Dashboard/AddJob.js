@@ -32,6 +32,15 @@ const AddJob = () => {
       toast.error("Please fill out all fields");
       return;
     }
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
+      return;
+    }
     dispatch(
       createJob({
         position,
