@@ -16,7 +16,7 @@
       "pre-commit": "npm run lint"
     }
   },
-  "author": "",
+  "author": "Anna Lebid",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -53,6 +53,6 @@
     "ts-node-dev": "^2.0.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": ">=14.20.1"
   }
 }
