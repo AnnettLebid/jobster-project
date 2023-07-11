@@ -12,5 +12,8 @@
     "node": ">=14.20.1"
   },
   "author": "Anna Lebid",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/recharts": "^1.8.24"
+  }
 }
