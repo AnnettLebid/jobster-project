@@ -1,4 +1,6 @@
-export const addUserToLocalStorage = (user) => {
+import { UserInterface } from "./types";
+
+export const addUserToLocalStorage = (user: UserInterface) => {
   localStorage.setItem("user", JSON.stringify(user));
 };
 
