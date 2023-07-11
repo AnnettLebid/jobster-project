@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { UserStore, UserInterface } from "../../utils/types";
 import {
   getUserFromLocalStorage,
   addUserToLocalStorage,
@@ -13,7 +14,7 @@ import {
   clearStoreThunk,
 } from "./userThunk";
 
-const initialState = {
+const initialState: UserStore = {
   isLoading: false,
   isSidebarOpen: false,
   user: getUserFromLocalStorage(),
@@ -21,21 +22,21 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (user, thunkAPI) => {
+  async (user: Partial<UserInterface>, thunkAPI: any) => {
     return registerUserThunk("auth/register", user, thunkAPI);
   }
 );
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (user, thunkAPI) => {
+  async (user: Partial<UserInterface>, thunkAPI: any) => {
     return loginUserThunk("auth/login", user, thunkAPI);
   }
 );
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async (user, thunkAPI) => {
+  async (user: Partial<UserInterface>, thunkAPI: any) => {
     return updateUserThunk("auth/updateUser", user, thunkAPI);
   }
 );
@@ -72,7 +73,7 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        toast.error(payload);
+        toast.error(payload as string);
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -86,7 +87,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        toast.error(payload);
+        toast.error(payload as string);
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
@@ -99,7 +100,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        toast.error(payload);
+        toast.error(payload as string);
       })
       .addCase(clearStore.rejected, () => {
         toast.error("There was an error");

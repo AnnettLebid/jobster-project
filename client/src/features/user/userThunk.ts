@@ -2,26 +2,39 @@ import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 import { clearAllJobsState } from "../allJobs/allJobsSlice";
 import { clearValues } from "../job/jobSlice";
 import { logoutUser } from "./userSlice";
+import { UserInterface } from "../../utils/types";
 
-export const registerUserThunk = async (url, user, thunkAPI) => {
+export const registerUserThunk = async (
+  url: string,
+  user: Partial<UserInterface>,
+  thunkAPI: any
+) => {
   try {
     const resp = await customFetch.post(url, user);
     return resp.data;
-  } catch (error) {
+  } catch (error: any) {
     return thunkAPI.rejectWithValue(error.response.data.msg);
   }
 };
 
-export const loginUserThunk = async (url, user, thunkAPI) => {
+export const loginUserThunk = async (
+  url: string,
+  user: Partial<UserInterface>,
+  thunkAPI: any
+) => {
   try {
     const resp = await customFetch.post(url, user);
     return resp.data;
-  } catch (error) {
+  } catch (error: any) {
     return thunkAPI.rejectWithValue(error.response.data.msg);
   }
 };
 
-export const updateUserThunk = async (url, user, thunkAPI) => {
+export const updateUserThunk = async (
+  url: string,
+  user: Partial<UserInterface>,
+  thunkAPI: any
+) => {
   try {
     //if we use headers instead of interceptors
     // const resp = await customFetch.patch(url, user, {
@@ -31,12 +44,12 @@ export const updateUserThunk = async (url, user, thunkAPI) => {
     // });
     const resp = await customFetch.patch(url, user);
     return resp.data;
-  } catch (error) {
+  } catch (error: any) {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
 
-export const clearStoreThunk = async (message, thunkAPI) => {
+export const clearStoreThunk = async (message: string, thunkAPI: any) => {
   try {
     thunkAPI.dispatch(logoutUser(message));
     thunkAPI.dispatch(clearAllJobsState());
