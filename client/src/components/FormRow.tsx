@@ -1,4 +1,20 @@
-const FormRow = ({ type, name, value, handleChange, labelText }) => {
+import { FC } from "react";
+
+interface FormRowProps {
+  type: string;
+  name: string;
+  value: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  labelText?: string;
+}
+
+export const FormRow: FC<FormRowProps> = ({
+  type,
+  name,
+  value,
+  handleChange,
+  labelText,
+}: FormRowProps) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">

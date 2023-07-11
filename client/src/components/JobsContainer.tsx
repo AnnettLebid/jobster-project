@@ -1,13 +1,15 @@
-import { useEffect } from "react";
-import Job from "./Job";
+import { useEffect, FC } from "react";
 import Wrapper from "../assets/wrappers/JobsContainer";
-import { useSelector, useDispatch } from "react-redux";
-import Loader from "./Loader";
+import { useSelector } from "react-redux";
+import { useAppThunkDispatch } from "../store";
+import { Job } from "./Job";
+import { Loader } from "./Loader";
 import { getAllJobs } from "../features/allJobs/allJobsSlice";
-import PageBtnContainer from "./PageBtnContainer";
+import { PageBtnContainer } from "./PageBtnContainer";
+import { Store, JobInterface } from "../utils/types";
 
-const JobsContainer = () => {
-  const dispatch = useDispatch();
+export const JobsContainer: FC = () => {
+  const dispatch = useAppThunkDispatch();
   const {
     isLoading,
     jobs,
@@ -18,7 +20,7 @@ const JobsContainer = () => {
     searchStatus,
     searchType,
     sort,
-  } = useSelector((store) => store.allJobs);
+  } = useSelector((store: Store) => store.allJobs);
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -42,7 +44,7 @@ const JobsContainer = () => {
         {totalJobs} job{jobs?.length > 1 && "s"} found
       </h5>
       <div className="jobs">
-        {jobs?.map((job) => {
+        {jobs?.map((job: JobInterface) => {
           return <Job key={job._id} {...job} />;
         })}
       </div>
@@ -50,5 +52,3 @@ const JobsContainer = () => {
     </Wrapper>
   );
 };
-
-export default JobsContainer;

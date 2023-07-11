@@ -1,10 +1,12 @@
+import { FC } from "react";
 import { useSelector } from "react-redux";
-import NavLinks from "./NavLinks";
-import Logo from "../components/Logo";
+import { NavLinks } from "./NavLinks";
+import { Logo } from "./Logo";
 import Wrapper from "../assets/wrappers/BigSidebar";
+import { Store } from "../utils/types";
 
-const BigSidebar = () => {
-  const { isSidebarOpen } = useSelector((store) => store.user);
+export const BigSidebar: FC = () => {
+  const { isSidebarOpen } = useSelector((store: Store) => store.user);
 
   return (
     <Wrapper>
@@ -25,4 +27,3 @@ const BigSidebar = () => {
     </Wrapper>
   );
 };
-export default BigSidebar;

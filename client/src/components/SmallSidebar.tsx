@@ -1,12 +1,14 @@
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
-import Logo from "./Logo";
-import NavLinks from "./NavLinks";
+import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
 import Wrapper from "../assets/wrappers/SmallSidebar";
 import { toggleSidebar } from "../features/user/userSlice";
+import { Store } from "../utils/types";
 
-const SmallSidebar = () => {
-  const { isSidebarOpen } = useSelector((store) => store.user);
+export const SmallSidebar: FC = () => {
+  const { isSidebarOpen } = useSelector((store: Store) => store.user);
   const dispatch = useDispatch();
 
   const toggle = () => {
@@ -33,5 +35,3 @@ const SmallSidebar = () => {
     </Wrapper>
   );
 };
-
-export default SmallSidebar;

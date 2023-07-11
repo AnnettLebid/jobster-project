@@ -1,4 +1,20 @@
-const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
+import { FC } from "react";
+
+interface FormRowSelectProps {
+  labelText?: string;
+  name: string;
+  value: string;
+  handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  list: string[];
+}
+
+export const FormRowSelect: FC<FormRowSelectProps> = ({
+  labelText,
+  name,
+  value,
+  handleChange,
+  list,
+}: FormRowSelectProps) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -11,7 +27,7 @@ const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
         onChange={handleChange}
         className="form-select"
       >
-        {list.map((itemValue, index) => {
+        {list.map((itemValue: string, index: number) => {
           return (
             <option key={index} value={itemValue}>
               {itemValue}
@@ -22,4 +38,3 @@ const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
     </div>
   );
 };
-export default FormRowSelect;

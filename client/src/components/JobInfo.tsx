@@ -1,6 +1,15 @@
+import { FC } from "react";
 import Wrapper from "../assets/wrappers/JobInfo";
 
-const JobInfo = ({ icon, text }) => {
+interface JobInfoInterface {
+  icon: JSX.Element;
+  text: string;
+}
+
+export const JobInfo: FC<JobInfoInterface> = ({
+  icon,
+  text,
+}: JobInfoInterface) => {
   return (
     <Wrapper>
       <span className="icon">{icon} </span>
@@ -8,4 +17,3 @@ const JobInfo = ({ icon, text }) => {
     </Wrapper>
   );
 };
-export default JobInfo;

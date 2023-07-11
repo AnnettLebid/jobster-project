@@ -1,11 +1,13 @@
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 import Wrapper from "../assets/wrappers/PageBtnContainer";
 import { changePage } from "../features/allJobs/allJobsSlice";
+import { Store } from "../utils/types";
 
-const PageBtnContainer = () => {
+export const PageBtnContainer: FC = () => {
   const dispatch = useDispatch();
-  const { numOfPages, page } = useSelector((store) => store.allJobs);
+  const { numOfPages, page } = useSelector((store: Store) => store.allJobs);
 
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1;
@@ -52,5 +54,3 @@ const PageBtnContainer = () => {
     </Wrapper>
   );
 };
-
-export default PageBtnContainer;

@@ -1,10 +1,18 @@
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import links from "../utils/links";
+import { LinkInterface } from "../utils/types";
 
-const NavLinks = ({ toggleSidebar }) => {
+interface NavLinksProps {
+  toggleSidebar?: () => void;
+}
+
+export const NavLinks: FC<NavLinksProps> = ({
+  toggleSidebar,
+}: NavLinksProps) => {
   return (
     <div className="nav-links">
-      {links.map((link) => {
+      {links.map((link: LinkInterface) => {
         const { text, path, id, icon } = link;
         return (
           <NavLink
@@ -24,4 +32,3 @@ const NavLinks = ({ toggleSidebar }) => {
     </div>
   );
 };
-export default NavLinks;

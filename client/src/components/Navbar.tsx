@@ -1,15 +1,17 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, FC } from "react";
+import { useSelector } from "react-redux";
 import { FaAlignLeft, FaUserCircle } from "react-icons/fa";
-import Logo from "./Logo";
+import { useAppThunkDispatch } from "../store";
+import { Logo } from "./Logo";
 import Wrapper from "../assets/wrappers/Navbar";
 import { toggleSidebar, clearStore } from "../features/user/userSlice";
+import { Store } from "../utils/types";
 
-const Navbar = () => {
-  const [showLogout, setShowLogout] = useState(false);
+export const Navbar: FC = () => {
+  const [showLogout, setShowLogout] = useState<boolean>(false);
 
-  const { user } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
+  const { user } = useSelector((store: Store) => store.user);
+  const dispatch = useAppThunkDispatch();
 
   const toggle = () => {
     dispatch(toggleSidebar());
@@ -48,5 +50,3 @@ const Navbar = () => {
     </Wrapper>
   );
 };
-
-export default Navbar;

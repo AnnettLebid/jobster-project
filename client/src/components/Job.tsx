@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from "react-icons/fa";
+import { JobInfo } from "./JobInfo";
+import { useAppThunkDispatch } from "../store";
 import { deleteJob, setEditJob } from "../features/job/jobSlice";
 import Wrapper from "../assets/wrappers/Job";
-import JobInfo from "./JobInfo";
+import { JobInterface } from "../utils/types";
 
-const Job = ({
+export const Job: FC<JobInterface> = ({
   _id,
   position,
   company,
@@ -13,8 +15,8 @@ const Job = ({
   jobType,
   createdAt,
   status,
-}) => {
-  const dispatch = useDispatch();
+}: JobInterface) => {
+  const dispatch = useAppThunkDispatch();
 
   const date = createdAt;
   return (
@@ -66,5 +68,3 @@ const Job = ({
     </Wrapper>
   );
 };
-
-export default Job;

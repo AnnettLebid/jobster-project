@@ -1,12 +1,15 @@
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from "react-icons/fa";
-import StatItem from "./StatItem";
+import { StatItem } from "./StatItem";
 import Wrapper from "../assets/wrappers/StatsContainer";
+import { StatsInterface } from "../utils/types";
+import { Store } from "../utils/types";
 
-const StatsContainer = () => {
-  const { stats } = useSelector((store) => store.allJobs);
+export const StatsContainer: FC = () => {
+  const { stats } = useSelector((store: Store) => store.allJobs);
 
-  const defaultStats = [
+  const defaultStats: StatsInterface[] = [
     {
       title: "pending applications",
       count: stats.pending || 0,
@@ -31,11 +34,9 @@ const StatsContainer = () => {
   ];
   return (
     <Wrapper>
-      {defaultStats?.map((item, index) => {
+      {defaultStats?.map((item: StatsInterface, index: number) => {
         return <StatItem key={index} {...item} />;
       })}
     </Wrapper>
   );
 };
-
-export default StatsContainer;

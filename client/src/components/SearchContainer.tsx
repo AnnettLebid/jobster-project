@@ -1,22 +1,29 @@
+import { FC } from "react";
+import { ChangeEvent, SyntheticEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FormRow, FormRowSelect } from ".";
 import Wrapper from "../assets/wrappers/SearchContainer";
 import { handleChange, clearFilters } from "../features/allJobs/allJobsSlice";
+import { Store } from "../utils/types";
 
-const SearchContainer = () => {
+export const SearchContainer: FC = () => {
   const dispatch = useDispatch();
   const { isLoading, search, searchStatus, searchType, sort, sortOptions } =
-    useSelector((store) => store.allJobs);
-  const { jobTypeOptions, statusOptions } = useSelector((store) => store.job);
+    useSelector((store: Store) => store.allJobs);
+  const { jobTypeOptions, statusOptions } = useSelector(
+    (store: Store) => store.job
+  );
 
-  const handleSearch = (e) => {
+  const handleSearch = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+  ) => {
     if (isLoading) {
       return;
     }
     dispatch(handleChange({ name: e.target.name, value: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(clearFilters());
   };
@@ -69,5 +76,3 @@ const SearchContainer = () => {
     </Wrapper>
   );
 };
-
-export default SearchContainer;

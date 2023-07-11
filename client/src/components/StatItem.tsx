@@ -1,6 +1,14 @@
+import { FC } from "react";
 import Wrapper from "../assets/wrappers/StatItem";
+import { StatsInterface } from "../utils/types";
 
-const StatItem = ({ count, title, icon, color, bcg }) => {
+export const StatItem: FC<StatsInterface> = ({
+  count,
+  title,
+  icon,
+  color,
+  bcg,
+}: StatsInterface) => {
   return (
     <Wrapper color={color} bcg={bcg}>
       <header>
@@ -11,4 +19,3 @@ const StatItem = ({ count, title, icon, color, bcg }) => {
     </Wrapper>
   );
 };
-export default StatItem;
