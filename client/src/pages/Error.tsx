@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as NotFound } from "../assets/images/not-found.svg";
 import Wrapper from "../assets/wrappers/ErrorPage";
 
-const Error: FC = () => {
+export const Error: FC = () => {
   return (
     <Wrapper className="full-page">
       <div>
@@ -15,4 +15,3 @@ const Error: FC = () => {
     </Wrapper>
   );
 };
-export default Error;

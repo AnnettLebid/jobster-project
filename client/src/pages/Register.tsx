@@ -1,10 +1,11 @@
 import { useState, useEffect, SyntheticEvent } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { RootState, useAppThunkDispatch } from "../store";
 import { loginUser, registerUser } from "../features/user/userSlice";
 import { Logo, FormRow } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
-import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -13,14 +14,14 @@ const initialState = {
   isMember: false,
 };
 
-const Register = () => {
+export const Register = () => {
   const [values, setValues] = useState(initialState);
-  const dispatch = useDispatch();
+  const dispatch = useAppThunkDispatch();
   const navigate = useNavigate();
 
-  const { user, isLoading } = useSelector((store) => store.user);
+  const { user, isLoading } = useSelector((store: RootState) => store.user);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setValues({ ...values, [name]: value });
@@ -105,5 +106,3 @@ const Register = () => {
     </Wrapper>
   );
 };
-
-export default Register;

@@ -3,7 +3,7 @@ import main from "../assets/images/main.svg";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { Logo } from "../components";
 
-const Landing = () => {
+export const Landing = () => {
   return (
     <Wrapper>
       <nav>
@@ -24,5 +24,3 @@ const Landing = () => {
     </Wrapper>
   );
 };
-
-export default Landing;
