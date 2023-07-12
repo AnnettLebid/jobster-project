@@ -88,3 +88,11 @@ export interface MonthlyApplications {
   date: string;
   count: number;
 }
+
+export enum JobParams {
+  status = "status",
+  jobType = "jobType",
+  jobLocation = "jobLocation",
+  company = "company",
+  position = "position",
+}
