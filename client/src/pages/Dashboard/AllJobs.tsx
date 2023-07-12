@@ -1,6 +1,5 @@
 import { SearchContainer, JobsContainer } from "../../components";
 
-
 const AllJobs = () => {
   return (
     <>

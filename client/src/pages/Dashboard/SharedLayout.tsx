@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { BigSidebar, Navbar, SmallSidebar } from "../../components";
 import Wrapper from "../../assets/wrappers/SharedLayout";
 
-const SharedLayout = () => {
+const SharedLayout: FC = () => {
   return (
     <Wrapper>
       <main className="dashboard">
