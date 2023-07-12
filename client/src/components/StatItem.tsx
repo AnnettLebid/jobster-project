@@ -1,14 +1,14 @@
 import { FC } from "react";
 import Wrapper from "../assets/wrappers/StatItem";
-import { StatsInterface } from "../utils/types";
+import { DefaultStatsInterface } from "../utils/types";
 
-export const StatItem: FC<StatsInterface> = ({
+export const StatItem: FC<DefaultStatsInterface> = ({
   count,
   title,
   icon,
   color,
   bcg,
-}: StatsInterface) => {
+}: DefaultStatsInterface) => {
   return (
     <Wrapper color={color} bcg={bcg}>
       <header>

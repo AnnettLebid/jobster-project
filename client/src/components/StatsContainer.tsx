@@ -2,31 +2,32 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from "react-icons/fa";
 import { StatItem } from "./StatItem";
+import { RootState } from "../store";
 import Wrapper from "../assets/wrappers/StatsContainer";
-import { StatsInterface } from "../utils/types";
-import { Store } from "../utils/types";
+import { DefaultStatsInterface, StatsInterface } from "../utils/types";
 
 export const StatsContainer: FC = () => {
-  const { stats } = useSelector((store: Store) => store.allJobs);
+  const { stats } = useSelector((store: RootState) => store.allJobs);
+  const { pending, interview, declined } = stats as StatsInterface;
 
-  const defaultStats: StatsInterface[] = [
+  const defaultStats = [
     {
       title: "pending applications",
-      count: stats.pending || 0,
+      count: pending || 0,
       icon: <FaSuitcaseRolling />,
       color: "#e9b949",
       bcg: "#fcefc7",
     },
     {
       title: "interviews scheduled",
-      count: stats.interview || 0,
+      count: interview || 0,
       icon: <FaCalendarCheck />,
       color: "#647acb",
       bcg: "#e0e8f9",
     },
     {
       title: "jobs declined",
-      count: stats.declined || 0,
+      count: declined || 0,
       icon: <FaBug />,
       color: "#d66a6a",
       bcg: "#ffeeee",
@@ -34,7 +35,7 @@ export const StatsContainer: FC = () => {
   ];
   return (
     <Wrapper>
-      {defaultStats?.map((item: StatsInterface, index: number) => {
+      {defaultStats?.map((item: DefaultStatsInterface, index: number) => {
         return <StatItem key={index} {...item} />;
       })}
     </Wrapper>

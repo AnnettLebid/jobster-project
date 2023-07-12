@@ -36,7 +36,7 @@ export interface AllJobsStore {
   totalJobs: number;
   numOfPages: number;
   page: number;
-  stats: {} | DefaultStatsInterface;
+  stats: {} | StatsInterface;
   monthlyApplications: [];
   search: string;
   searchStatus: string;
@@ -54,7 +54,7 @@ export interface UserInterface {
   password: string;
 }
 
-export interface StatsInterface {
+export interface DefaultStatsInterface {
   title: string;
   count: number;
   icon: JSX.Element;
@@ -62,7 +62,7 @@ export interface StatsInterface {
   bcg: string;
 }
 
-interface DefaultStatsInterface {
+export interface StatsInterface {
   pending: number;
   interview: number;
   declined: number;

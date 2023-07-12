@@ -1,6 +1,9 @@
+import { SyntheticEvent } from "react";
+import { ChangeEvent } from "react";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { RootState, useAppThunkDispatch } from "../../store";
 import { FormRow, FormRowSelect } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import {
@@ -11,8 +14,8 @@ import {
 } from "../../features/job/jobSlice";
 
 const AddJob = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.user);
+  const dispatch = useAppThunkDispatch();
+  const { user } = useSelector((store: RootState) => store.user);
   const {
     isLoading,
     position,
@@ -24,9 +27,9 @@ const AddJob = () => {
     statusOptions,
     isEditing,
     editJobId,
-  } = useSelector((store) => store.job);
+  } = useSelector((store: RootState) => store.job);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (!position || !company || !jobLocation) {
       toast.error("Please fill out all fields");
@@ -53,7 +56,7 @@ const AddJob = () => {
     );
   };
 
-  const handleJobInput = (e) => {
+  const handleJobInput = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     dispatch(handleChange({ name, value }));
