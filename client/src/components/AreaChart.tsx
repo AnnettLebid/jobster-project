@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   ResponsiveContainer,
   AreaChart as AreaChartComponent,
@@ -7,8 +8,13 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { MonthlyApplications } from "../utils/types";
 
-const AreaChart = ({ data }) => {
+interface AreaChartProps {
+  data: MonthlyApplications[];
+}
+
+export const AreaChart: FC<AreaChartProps> = ({ data }: AreaChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <AreaChartComponent data={data} margin={{ top: 50 }}>
@@ -21,4 +27,3 @@ const AreaChart = ({ data }) => {
     </ResponsiveContainer>
   );
 };
-export default AreaChart;

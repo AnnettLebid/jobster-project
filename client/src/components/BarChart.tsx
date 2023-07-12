@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   BarChart as BarChartComponent,
   Bar,
@@ -7,9 +8,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { MonthlyApplications } from "../utils/types";
 
-const BarChart = ({ data }) => {
-return (
+interface AreaChartProps {
+  data: MonthlyApplications[];
+}
+
+const BarChart: FC<AreaChartProps> = ({ data }: AreaChartProps) => {
+  return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChartComponent data={data} margin={{ top: 50 }}>
         <CartesianGrid strokeDasharray="10 10 " />

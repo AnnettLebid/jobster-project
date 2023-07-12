@@ -23,13 +23,20 @@ export interface JobStore {
   editJobId: string;
 }
 
+export enum SearchFormQuery {
+  search = "search",
+  searchStatus = "searchStatus",
+  searchType = "searchType",
+  sort = "sort",
+}
+
 export interface AllJobsStore {
   isLoading: boolean;
   jobs: [];
   totalJobs: number;
   numOfPages: number;
   page: number;
-  stats: DefaultStatsInterface;
+  stats: {} | DefaultStatsInterface;
   monthlyApplications: [];
   search: string;
   searchStatus: string;
@@ -75,4 +82,9 @@ export interface JobInterface {
   createdAt: string;
   jobType: string;
   jobLocation: string;
+}
+
+export interface MonthlyApplications {
+  date: string;
+  count: number;
 }
