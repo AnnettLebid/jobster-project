@@ -1,7 +1,7 @@
-import customFetch, { checkForUnauthorizedResponse } from "./../../utils/axios";
+import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 import authHeader from "../../utils/authHeader";
 
-export const getAllJobsThunk = async (_, thunkAPI) => {
+export const getAllJobsThunk = async (_: void, thunkAPI: any) => {
   const { page, search, searchStatus, searchType, sort } =
     thunkAPI.getState().allJobs;
 
@@ -17,7 +17,7 @@ export const getAllJobsThunk = async (_, thunkAPI) => {
   }
 };
 
-export const showStatsThunk = async (_, thunkAPI) => {
+export const showStatsThunk = async (_: void, thunkAPI: any) => {
   try {
     const response = await customFetch.get("jobs/stats", authHeader(thunkAPI));
     return response.data;

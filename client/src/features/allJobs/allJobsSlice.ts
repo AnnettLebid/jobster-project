@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { getAllJobsThunk, showStatsThunk } from "./allJobsThunk";
+import { AllJobsStore, SearchFormQuery } from "../../utils/types";
 
 export const getAllJobs = createAsyncThunk(
   "allJobs/getAllJobs",
@@ -17,7 +18,7 @@ const initialFiltersState = {
   sortOptions: ["latest", "oldest", "a-z", "z-a"],
 };
 
-const initialState = {
+const initialState: AllJobsStore = {
   isLoading: true,
   jobs: [],
   totalJobs: 0,
@@ -39,8 +40,10 @@ const allJobsSlice = createSlice({
       state.isLoading = false;
     },
     handleChange: (state, { payload: { name, value } }) => {
+      console.log("name", name);
+      console.log("value", value);
       state.page = 1;
-      state[name] = value;
+      state[name as keyof typeof SearchFormQuery] = value;
     },
     clearFilters: (state) => {
       return { ...state, ...initialFiltersState };
@@ -63,7 +66,7 @@ const allJobsSlice = createSlice({
       })
       .addCase(getAllJobs.rejected, (state, { payload }) => {
         state.isLoading = false;
-        toast.error(payload);
+        toast.error(payload as string);
       })
       .addCase(showStats.pending, (state) => {
         state.isLoading = true;
@@ -75,7 +78,7 @@ const allJobsSlice = createSlice({
       })
       .addCase(showStats.rejected, (state, { payload }) => {
         state.isLoading = false;
-        toast.error(payload);
+        toast.error(payload as string);
       });
   },
 });

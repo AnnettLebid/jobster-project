@@ -49,9 +49,9 @@ export const updateUserThunk = async (
   }
 };
 
-export const clearStoreThunk = async (message: string, thunkAPI: any) => {
+export const clearStoreThunk = async (thunkAPI: any) => {
   try {
-    thunkAPI.dispatch(logoutUser(message));
+    thunkAPI.dispatch(logoutUser());
     thunkAPI.dispatch(clearAllJobsState());
     thunkAPI.dispatch(clearValues());
     return Promise.resolve();
