@@ -1,13 +1,15 @@
+import { ChangeEvent, BaseSyntheticEvent } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { RootState, useAppThunkDispatch } from "../../store";
 import { FormRow } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { updateUser } from "../../features/user/userSlice";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((store) => store.user);
+  const dispatch = useAppThunkDispatch();
+  const { user, isLoading } = useSelector((store: RootState) => store.user);
 
   const [userData, setUserData] = useState({
     name: user?.name || "",
@@ -16,13 +18,13 @@ const Profile = () => {
     location: user?.location || "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: BaseSyntheticEvent) => {
     e.preventDefault();
     const { name, email, lastName, location } = userData;
     if (!name || !email || !lastName || !location) {
