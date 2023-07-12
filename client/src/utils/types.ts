@@ -51,6 +51,7 @@ export interface UserInterface {
   email: string;
   location: string;
   token?: string;
+  password: string;
 }
 
 export interface StatsInterface {
