@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 import { createJobThunk, deleteJobThunk, editJobThunk } from "./jobThunk";
+import { JobParams } from "../../utils/types";
 
 export const createJob = createAsyncThunk("job/createJob", createJobThunk);
 export const deleteJob = createAsyncThunk("job/deleteJob", deleteJobThunk);
@@ -25,7 +26,7 @@ const jobSlice = createSlice({
   initialState,
   reducers: {
     handleChange: (state, { payload: { name, value } }) => {
-      state[name] = value;
+      state[name as keyof typeof JobParams] = value;
     },
     clearValues: () => {
       return {
@@ -46,7 +47,7 @@ const jobSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(createJob.rejected, (state, { payload }) => {
-      toast.error(payload);
+      toast.error(payload as string);
       state.isLoading = false;
     });
     builder.addCase(deleteJob.pending, (state) => {
@@ -57,7 +58,7 @@ const jobSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(deleteJob.rejected, (state, { payload }) => {
-      toast.error(payload);
+      toast.error(payload as string);
       state.isLoading = false;
     });
     builder.addCase(editJob.pending, (state) => {
@@ -68,7 +69,7 @@ const jobSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(editJob.rejected, (state, { payload }) => {
-      toast.error(payload);
+      toast.error(payload as string);
       state.isLoading = false;
     });
   },
