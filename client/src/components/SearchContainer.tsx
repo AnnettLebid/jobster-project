@@ -1,17 +1,17 @@
 import { FC } from "react";
 import { ChangeEvent, SyntheticEvent } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { FormRow, FormRowSelect } from ".";
 import Wrapper from "../assets/wrappers/SearchContainer";
 import { handleChange, clearFilters } from "../features/allJobs/allJobsSlice";
-import { Store } from "../utils/types";
+import { RootState, useAppThunkDispatch } from "../store";
 
 export const SearchContainer: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppThunkDispatch();
   const { isLoading, search, searchStatus, searchType, sort, sortOptions } =
-    useSelector((store: Store) => store.allJobs);
+    useSelector((store: RootState) => store.allJobs);
   const { jobTypeOptions, statusOptions } = useSelector(
-    (store: Store) => store.job
+    (store: RootState) => store.job
   );
 
   const handleSearch = (

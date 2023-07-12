@@ -1,12 +1,12 @@
 import { useEffect, FC } from "react";
 import Wrapper from "../assets/wrappers/JobsContainer";
 import { useSelector } from "react-redux";
-import { useAppThunkDispatch } from "../store";
+import { RootState, useAppThunkDispatch } from "../store";
 import { Job } from "./Job";
 import { Loader } from "./Loader";
 import { getAllJobs } from "../features/allJobs/allJobsSlice";
 import { PageBtnContainer } from "./PageBtnContainer";
-import { Store, JobInterface } from "../utils/types";
+import { JobInterface } from "../utils/types";
 
 export const JobsContainer: FC = () => {
   const dispatch = useAppThunkDispatch();
@@ -20,7 +20,7 @@ export const JobsContainer: FC = () => {
     searchStatus,
     searchType,
     sort,
-  } = useSelector((store: Store) => store.allJobs);
+  } = useSelector((store: RootState) => store.allJobs);
 
   useEffect(() => {
     dispatch(getAllJobs());

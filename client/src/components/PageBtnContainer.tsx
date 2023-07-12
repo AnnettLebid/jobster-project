@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 import Wrapper from "../assets/wrappers/PageBtnContainer";
 import { changePage } from "../features/allJobs/allJobsSlice";
-import { Store } from "../utils/types";
+import { RootState, useAppThunkDispatch } from "../store";
 
 export const PageBtnContainer: FC = () => {
-  const dispatch = useDispatch();
-  const { numOfPages, page } = useSelector((store: Store) => store.allJobs);
+  const dispatch = useAppThunkDispatch();
+  const { numOfPages, page } = useSelector((store: RootState) => store.allJobs);
 
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1;

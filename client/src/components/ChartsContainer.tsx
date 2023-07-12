@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import BarChart from "./BarChart";
 import { AreaChart } from "./AreaChart";
 import Wrapper from "../assets/wrappers/ChartsContainer";
-import { Store } from "../utils/types";
+import { RootState } from "../store";
 
 export const ChartsContainer: FC = () => {
   const [barChart, setBarChart] = useState<boolean>(true);
 
   const { monthlyApplications: data } = useSelector(
-    (store: Store) => store.allJobs
+    (store: RootState) => store.allJobs
   );
 
   return (

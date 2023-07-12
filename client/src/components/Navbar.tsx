@@ -1,16 +1,15 @@
 import { useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { FaAlignLeft, FaUserCircle } from "react-icons/fa";
-import { useAppThunkDispatch } from "../store";
+import { RootState, useAppThunkDispatch } from "../store";
 import { Logo } from "./Logo";
 import Wrapper from "../assets/wrappers/Navbar";
 import { toggleSidebar, clearStore } from "../features/user/userSlice";
-import { Store } from "../utils/types";
 
 export const Navbar: FC = () => {
   const [showLogout, setShowLogout] = useState<boolean>(false);
 
-  const { user } = useSelector((store: Store) => store.user);
+  const { user } = useSelector((store: RootState) => store.user);
   const dispatch = useAppThunkDispatch();
 
   const toggle = () => {
