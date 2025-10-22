@@ -25,10 +25,10 @@ To run this project, install it locally using yarn:
 
 ```
 $ cd client
-$ yarn
-$ yarn start
+$ npm install
+$ npm start
 
 $ cd server
-$ yarn
-$ yarn dev
+$ npm install
+$ npm run dev
 ```
