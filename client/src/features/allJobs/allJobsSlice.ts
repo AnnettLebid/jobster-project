@@ -40,8 +40,6 @@ const allJobsSlice = createSlice({
       state.isLoading = false;
     },
     handleChange: (state, { payload: { name, value } }) => {
-      console.log("name", name);
-      console.log("value", value);
       state.page = 1;
       state[name as keyof typeof SearchFormQuery] = value;
     },
