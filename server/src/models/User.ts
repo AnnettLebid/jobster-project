@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import "dotenv/config";
 
 import { UserDocument } from "../types/user.interface.js";
@@ -51,8 +51,15 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createJWT = function () {
-  return jwt.sign({ userId: this._id, name: this.name }, process.env.JWT_SECRET as string, {
-    expiresIn: process.env.JWT_LIFETIME,
+  const payload = { userId: this._id.toString(), name: this.name };
+  const secret = process.env.JWT_SECRET;
+  
+  if (!secret) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+  
+  return jwt.sign(payload, secret, {
+    expiresIn: (process.env.JWT_LIFETIME || '30d') as any
   });
 };
 
