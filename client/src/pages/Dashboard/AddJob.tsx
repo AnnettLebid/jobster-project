@@ -12,6 +12,7 @@ import {
   createJob,
   editJob,
 } from "../../features/job/jobSlice";
+import { CreateJobInterface } from "../../utils/types";
 
 const AddJob = () => {
   const dispatch = useAppThunkDispatch();
@@ -44,19 +45,21 @@ const AddJob = () => {
       );
       return;
     }
-    dispatch(
-      createJob({
-        position,
-        company,
-        jobLocation,
-        jobType,
-        jobTypeOptions,
-        status,
-      })
-    );
+
+    const newJob: CreateJobInterface = {
+      position,
+      company,
+      jobLocation,
+      jobType,
+      status,
+    };
+
+    dispatch(createJob(newJob));
   };
 
-  const handleJobInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleJobInput = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
     dispatch(handleChange({ name, value }));
@@ -64,7 +67,7 @@ const AddJob = () => {
 
   useEffect(() => {
     if (!isEditing) {
-      dispatch(handleChange({ name: "jobLocation", value: user.location }));
+      dispatch(handleChange({ name: "jobLocation", value: user?.location }));
     }
   }, []);
 

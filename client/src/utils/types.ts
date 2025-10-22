@@ -75,14 +75,25 @@ export interface LinkInterface {
   icon: JSX.Element;
 }
 
-export interface JobInterface {
-  _id: string;
-  company: string;
+// Base job data that user provides
+export interface CreateJobInterface {
   position: string;
-  status: string;
-  createdAt: string;
-  jobType: string;
+  company: string;
   jobLocation: string;
+  jobType: string;
+  status: string;
+}
+
+// Full job interface extends the base with server-provided fields
+export interface JobInterface extends CreateJobInterface {
+  _id: string;
+  createdAt: string;
+  jobTypeOptions?: string[];
+}
+
+export interface EditJobInterface {
+  jobId: string;
+  job: CreateJobInterface;
 }
 
 export interface MonthlyApplications {

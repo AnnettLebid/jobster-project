@@ -2,9 +2,12 @@ import { showLoading, hideLoading, getAllJobs } from "../allJobs/allJobsSlice";
 import customFetch, { checkForUnauthorizedResponse } from "../../utils/axios";
 import { clearValues } from "./jobSlice";
 import authHeader from "../../utils/authHeader";
-import { JobInterface } from "../../utils/types";
+import { CreateJobInterface, EditJobInterface } from "../../utils/types";
 
-export const createJobThunk = async (job: JobInterface, thunkAPI: any) => {
+export const createJobThunk = async (
+  job: CreateJobInterface,
+  thunkAPI: any
+) => {
   try {
     const resp = await customFetch.post("/jobs", job, authHeader(thunkAPI));
     thunkAPI.dispatch(clearValues());
@@ -25,7 +28,7 @@ export const deleteJobThunk = async (jobId: string, thunkAPI: any) => {
   }
 };
 export const editJobThunk = async (
-  { jobId, job }: { jobId: string; job: JobInterface },
+  { jobId, job }: EditJobInterface,
   thunkAPI: any
 ) => {
   try {
