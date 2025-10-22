@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 import Wrapper from "../assets/wrappers/JobInfo";
 
 interface JobInfoInterface {
-  icon: JSX.Element;
+  icon: ReactElement;
   text: string;
 }
 

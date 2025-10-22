@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export interface Store {
   user: UserStore;
   allJobs: AllJobsStore;
@@ -57,7 +59,7 @@ export interface UserInterface {
 export interface DefaultStatsInterface {
   title: string;
   count: number;
-  icon: JSX.Element;
+  icon: ReactElement;
   color: string;
   bcg: string;
 }
@@ -72,7 +74,7 @@ export interface LinkInterface {
   id: number;
   text: string;
   path: string;
-  icon: JSX.Element;
+  icon: ReactElement;
 }
 
 // Base job data that user provides
